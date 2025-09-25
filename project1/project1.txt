@@ -1,0 +1,92 @@
+Author: Iresh Damaraju
+
+[Q0] Reflect: Is the result in a0 always the correct and complete product of the two 32-
+bit input numbers? Why or why not? 
+
+No, it doesn't handle negative number or have overflow/saturation logic
+
+[Q1] Think: Can you think of any other arithmetic operations not listed on the reference 
+sheet that could be implemented using RISC-V assembly code? Multiplication and 
+division are not allowed as answers. 
+
+The first one that comes to mind is saturation instructions, it negates the data integerity issues of the dot product.
+
+[Q2] Think: Multiplication can also be implemented in hardware by creating a mul 
+instruction. What might be the benefits and costs of introducing a hardware multiplication 
+instruction? Describe at least one benefit and one cost/downside. 
+
+Hardware muliplications will always be much faster than software, however integrating it with rest of the CPU would be complex and take up more area
+
+[Q3] Research: Recall the IA-32 (32-bit x86) assembly language you learned in ECE 354 
+(Wikipedia). Describe 3 differences between RV32I and IA-32. Do not simply list 
+terminology (like CISC or RISC) without describing what it means or providing an 
+example. 
+
+1.) CISC has variable length instrucition while RISC has fixed 32 bit instructions
+2.) RISC only has load/stores while 32-bit x86 has many different way to access memory
+3.) RISC has 32 general purpose registers and 32-bit x86 has a handful of general and some with special purposes
+ 
+Problem 2 
+[Q4] Think: Provide a brief description of the differences between a high-level language 
+such as C and a low-level language such as RISC-V. In what situations would you use one or 
+the other? 
+
+C for general software development and RISC-V for assembly level control in performance critical or hardware abstracting applications
+
+[Q5] Research: What software components allow the C code you write to be realized as 
+machine instructions that can be executed by a processor? How might their design impact 
+overall performance? 
+
+The compiler, assembler and linker allow C to be translated to machine instructions. 
+They decide how the high level abstractions of C get translated into machine code, 
+thus these three have to fill in the details missing due to abstraction and how to best utilze the hardware.
+A simple well-known compiler optimization is unrolling known length loops so there can be parallel execution.
+
+[Q6] Research: Adding a hardware multiplication instruction would improve performance 
+for certain programs that utilize this heavily, such as dot product. What would be the 
+effects, if any, of adding this optimization to a CPU on other programs that do not require 
+multiplication as extensively? 
+
+it would increase the complexity of the CPU by affecting pipelinign or clock speed causing a decrease in overall performance
+ 
+Problem 3 
+[Q7] Reflect: What is this program doing (be specific as to the equation this implements)? 
+
+t5 = 8 << 2 = 32
+t0 = a0 - 32
+t1 = t0 << 2 + t0
+t2 = 0
+t3 = t1
+t4 = 9
+
+a0 = (a0 - 32 x 5)/9
+
+[Q8] Think: Explain how you would modify this assembly code to produce the opposite 
+effect. 
+
+Depending on the context by opposite effect, rather than divide by 9 you can multiply by 9 by changing the comparsion instruction to bge so it can count up
+
+[Q9] Research: A simple arithmetic program such as this can still run faster by means of 
+hardware improvement. Name one hardware improvement you could make that would 
+make this particular program run faster. 
+
+There are the basic cases of increasing clock speed or better pipelining,
+but in theory a hardware multiple instruction can be heavily utilized has we multiple by 5 and divide by 9
+
+I certify that my usage of LLMs is consistent with UW-Madison's academic integrity policies
+
+a0 = 1
+beq a0, zero, no_llm 
+llm: 
+    mv ai_statement, used_llms 
+    beq t0, t0, add_to_project1 
+no_llm: 
+    mv ai_statement, did_not_use_llms 
+add_to_project1: 
+    addi project1.txt, project1.txt, ai_statement 
+ 
+.data 
+used_llms: .asciiz “I certify that my usage of LLMs is consistent with 
+UW-Madison's academic integrity policies.” 
+did_not_use_llms: .asciiz “I certify that I have not used LLMs to 
+complete this assignment in any shape or form.”
