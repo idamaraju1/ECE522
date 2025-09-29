@@ -1,0 +1,15 @@
+[Q1] (not graded): Following the same encoding of 0, + and -, provide the Booth’s encoding
+for this 32-bit number: −8
+
+0000 0000 0000 0000 0000 0000 0000 -000
+
+[Q2] (not graded): Following the same encoding of 0, + and -, provide the Booth’s encoding
+for this 32-bit number: 5
+
+0000 0000 0000 0000 0000 0000 0000 +-+-
+
+[Q3]: Fix the bug in booth_compute so these tests produce correct results. Do not
+modify the trace generation logic for submission. Hint: focus on the booth
+encoding/opcode generation logic.
+
+int right should be 0 not 1 on line 9

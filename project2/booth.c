@@ -6,7 +6,7 @@ void booth_compute(int32_t multiplier, int32_t multiplicand, int *cycle, FILE *f
 {
     int64_t product_upper = 0; // note: need 33 bits
     int32_t product_lower = multiplier;
-    int     right = 1;
+    int     right = 0;
 
     fprintf(fp, "Cycle:%12d | load: 1 | multiplier:%12d | multiplicand:%12d\n",
            *cycle, multiplier, multiplicand);
